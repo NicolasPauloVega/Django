@@ -5,4 +5,4 @@ from .models import Tarea
 def home(request):
     tarea = Tarea.objects.all()
     context = {'tareas': tarea}
-    return render(request, 'home.html',context)
+    return render(request, 'todo/home.html',context)
