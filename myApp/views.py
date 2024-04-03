@@ -17,9 +17,3 @@ def index(request):
         'even_years': even_years,
         'odd_years': odd_years,
     })
-
-def presentacion(request):
-    # return HttpResponse(layout+"""
-    #                     <h2> Nombre: Kevin Hernandez <br> Numero: 3224634734 <br> Email: kevinhp2006@gmail.com </h2>
-    #                     """)
-    return render(request, 'index.html')
