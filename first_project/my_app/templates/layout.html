@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <scritp src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></scritp>
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% comment 'Información de la pagina' %}
+    Proyecto de desarrollo 
+    {% endcomment %}
+    <header>
+        <div class="logotipo">
+            <img src="{% static 'images/logo.png' %}" alt="">
+            <h1>Sitio Web con Django | Kevin Hernández</h1>
+        </div>
+    </header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Django</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+                </li>
+                {% comment %} <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/holaMundo">Hola Mundo</a>
+                </li> {% endcomment %}
+                {% comment %} <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/saludo">Saludo</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/presentacion">Presentacion</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/contacto">Contacto</a> {% endcomment %}
+                {% comment %} </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/quienesSomos">Quienes Somos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/productosServicios">Productos y Servicios</a>
+                </li> {% endcomment %}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/ejercicioBucle">Ejercicio de bucles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/pagina">Página</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/articulos">Lista Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/create_articulo">Formulario N.1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/create-full-article">Formulario N.2</a>
+                </li>
+
+            </ul>
+          </div>
+        </div>
+    </nav>
+    <div class="barra">
+        <span class="esquina-izquierda"></span>
+        <span class="relleno-barra"></span>
+        <span class="esquina-derecha"></span>
+    </div>
+    <div id="content">
+        <div class="box">
+            
+            {%block content%}
+                <!--<strong>Contenido del Bloque Original</strong>--> 
+            {%endblock%}
+        </div>
+    </div>
+    <footer>Master de Framework Django &copy; Kevin Hernández ({% now 'd/m/y h:i:s' %})</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-9F97L+UamjVv9ajCb70jL6p4tfwlQe/2eBbEMsVMzRM1a21x9QpOm2f4hBzO95JL" crossorigin="anonymous"></script>
+</body>
+</html>
