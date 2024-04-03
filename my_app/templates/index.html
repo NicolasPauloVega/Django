@@ -5,4 +5,12 @@
 {% block content %}
     <h1>Inicio</h1>
     <p>Años hasta el 2050</p>
+
+    {% comment 'bucles' %} bucle del 2024 al 2050 {% endcomment %}
+    <ul>
+        {% for year in years_list %}
+            <li>{{year}}</li>
+        {% endfor %}
+    </ul>
+
 {% endblock %}

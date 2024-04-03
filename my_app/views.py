@@ -26,10 +26,11 @@ def hello_world(request):
 
 def index(request):
     year = 2024
+    years_list=[]
     while year <= 2050:
-        f"<li> {str(year)} </li>"
+        years_list.append(year)
         year += 1
-    return render(request, 'index.html')
+    return render(request, 'index.html', {'years_list': years_list})
 
 def page(request, redirects=0):
     if redirects==1:
