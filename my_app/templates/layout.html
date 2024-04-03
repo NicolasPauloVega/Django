@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,8 @@
 <body>
     <header>
         <div class="logotipo">
+            {% comment 'logo-img' %} logo {% endcomment %}
+            <img src="{% static 'img/logo.png' %}" alt="">
             <h1>Sitio Web con Django | Nicolas Paulo Vega</h1>
         </div>
     </header>
@@ -31,13 +34,18 @@
             </li>
         </ul>    
     </nav>
-
-    <hr>
+    <div class="barra">
+        <span class="esquina-izquierda"></span>
+        <span class="relleno-barra"></span>
+        <span class="esquina-derecha"></span>
+    </div>
     
     <div id="content">
-        {% block content %}
+        <div class="box">
+            {% block content %}
 
-        {% endblock %}
+            {% endblock %}
+        </div>
     </div>
 
     <footer>Master Framework &copy; Nicolas Paulo Vega</footer>
