@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            {% comment 'title' %} Titulo de la pagina {% endcomment %}
+        {% endblock %}
+    </title>
+</head>
+<body>
+    <h1>Sitio web con Django | Nicolas Paulo Vega</h1>
+    <hr>
+    <ul>
+        <li>
+            <a href="#">Bienvenido</a>
+        </li>
+        <li>
+            <a href="#">Index</a>
+        </li>
+        <li>
+            <a href="#">Hola mundo</a>
+        </li>
+        <li>
+            <a href="#">Pagina</a>
+        </li>
+        <li>
+            <a href="#">Contactos</a>
+        </li>
+    </ul>
+
+    <div class="contenido">
+        {% block content %}
+            {% comment 'content' %} contenido de la pagina {% endcomment %}
+        {% endblock %}
+    </div>
+
+    <footer>Master del Framework &copy; Nicolas Paulo Vega</footer>
+</body>
+</html>
