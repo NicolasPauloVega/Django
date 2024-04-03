@@ -20,3 +20,8 @@ class Article(models.Model):
         else:
             publico = "(Privado)"
         return f"{self.id}-{self.title} : {publico}"
+    
+class Category(models.Model):
+    name = models.CharField(max_length=110)
+    description = models.CharField(max_length=250)
+    create_date = models.DateTimeField(auto_now_add=True)
