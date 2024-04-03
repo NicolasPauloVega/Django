@@ -6,25 +6,34 @@
     <title>
         {% block title %}  {% endblock %}
     </title>
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
-    <h1>Sitio Web con Django | Nicolas Paulo Vega</h1>
-    <hr>
-    <ul>
-        <li>
-            <a href="/welcome">Bienvenido</a>
-        </li>
-        <li>
-            <a href="/index">Inicio</a>
-        </li>
-        <li>
-            <a href="/hello-world">Hola mundo</a>
-        </li>
-        <li>
-            <a href="/test-page">Página</a>
-        </li>
-    </ul>
+    <header>
+        <div class="logotipo">
+            <h1>Sitio Web con Django | Nicolas Paulo Vega</h1>
+        </div>
+    </header>
 
+    <nav>
+        <ul>
+            <li>
+                <a href="/welcome">Bienvenido</a>
+            </li>
+            <li>
+                <a href="/index">Inicio</a>
+            </li>
+            <li>
+                <a href="/hello-world">Hola mundo</a>
+            </li>
+            <li>
+                <a href="/test-page">Página</a>
+            </li>
+        </ul>    
+    </nav>
+
+    <hr>
+    
     <div id="content">
         {% block content %}
 
