@@ -21,16 +21,19 @@
     <nav>
         <ul>
             <li>
-                <a href="/index">Inicio</a>
+                <a href="{% url 'index' %}">Inicio</a>
             </li>
             <li>
-                <a href="/welcome">Bienvenido</a>
+                <a href="{% url 'welcome' %}">Bienvenido</a>
             </li>
             <li>
-                <a href="/hello-world">Hola mundo</a>
+                <a href="{% url 'hello_world' %}">Hola mundo</a>
             </li>
             <li>
-                <a href="/test-page">Página</a>
+                <a href="{% url 'pages' %}">Página</a>
+            </li>
+            <li>
+                <a href="{% url 'contact' 'Nicolas' 'Paulo Vega'%}">Contacto</a>
             </li>
         </ul>    
     </nav>
@@ -48,6 +51,6 @@
         </div>
     </div>
 
-    <footer>Master Framework &copy; Nicolas Paulo Vega</footer>
+    <footer>Master Framework &copy; Nicolas Paulo Vega - {% now 'd/m/Y h:m:s' %}</footer>
 </body>
 </html>

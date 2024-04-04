@@ -4,5 +4,58 @@
 
 {% block content %}
     <h1 class="title">Pagina de mi web</h1>
-    <p>Creado por Nicolas Paulo Vega</p>
+    {% comment '' %} Imprime un texto dentro de un párrafo HTML {% endcomment %}
+    <p>{{"Creado por Nicolas Paulo Vega"}}</p>
+
+    {% comment 'cut' %} Corta la cadena por espacios y devuelve la primera palabra {% endcomment %}
+    <p>{{"Creado por Nicolas Paulo Vega"|cut:' '}}</p>
+
+    {% comment 'default' %} Imprime el valor de la variable 'text', o "No hay nada" si no está definida {% endcomment %}
+    {{text|default:"No hay nada"}}
+
+    {% comment 'first and last' %} Imprime el primer y último elemento de la lista 'list' {% endcomment %}
+    <p>
+        {{list|first}}
+        {{list|last}}
+    </p>
+
+    {% comment 'join' %} Imprime todos los elementos de la lista 'list' separados por comas y espacios {% endcomment %}
+    <p>
+        {{list|join:", "}}
+    </p>
+
+    {% comment 'length' %} Imprime la longitud de la lista 'list' {% endcomment %}
+    <p>
+        {{list|length}}
+    </p>
+    
+    {% comment 'length' %} Imprime la longitud de la cadena "test text" {% endcomment %}
+    <p>
+        {{'test text'|length}}
+    </p>
+    
+    {% comment 'upper' %} Imprime la cadena "test text" en mayúsculas {% endcomment %}
+    <p>
+        {{'test text'|upper}}
+    </p>
+    
+    {% comment 'lower' %} Imprime la cadena "test text" en minúsculas {% endcomment %}
+    <p>
+        {{'test text'|lower}}
+    </p>
+    
+    {% comment 'random' %} Imprime un elemento aleatorio de la lista 'list' {% endcomment %}
+    <p>
+        {{list|random}}
+    </p>
+    
+    {% comment 'striptags' %} Elimina todas las etiquetas HTML de la cadena y solo imprime el texto {% endcomment %}
+    <p>
+        {{'<h1>Texto</h1> <strong>Pruebas</strong>'|striptags}}
+    </p>
+    
+    {% comment 'striptags and wordcount' %} Elimina las etiquetas HTML de la cadena, cuenta las palabras y las imprime {% endcomment %}
+    <p>
+        {{'<h1>Texto</h1> <strong>Pruebas</strong>'|striptags|wordcount}}
+    </p>
 {% endblock %}
