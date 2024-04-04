@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
+from my_app.models import Article, Category
 
 # Create your views here.
 
@@ -68,3 +69,11 @@ def contact(request, name="", last_name=""):
         html += f"<h3> {name} {last_name} </h3>"
     return HttpResponse(f"<h2>Contacto </h2>"+html)
 
+def create_article(request,title,content,public):
+    article = Article(
+        title = title,
+        content = content,
+        public = public,
+    )
+    article.save()
+    return HttpResponse(f"Articulo creado: {article.title} - {article.content} ")
