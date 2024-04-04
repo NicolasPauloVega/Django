@@ -24,6 +24,8 @@ urlpatterns = [
     path('contact/<str:name>/<str:last_name>', contact, name="contact"),
 
     #links para el articulo
+    path('article/', article, name="article"),
     path('create-article/', create_article, name="create_article"),
     path('create-article/<str:title>/<str:content>/<str:public>', create_article, name="create_article"),
+    path('update-article/<int:id>', update_article, name="update_article"),
 ]

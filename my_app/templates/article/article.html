@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %} Articulos {% endblock %}
+
+{% block content %}
+    <h1 class="title">Listado de Articulos</h1>
+    <ul>
+        {% for article in articles %}
+            <li>
+                {{article.id}} - {{article.title}}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
