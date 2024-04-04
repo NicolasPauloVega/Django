@@ -82,6 +82,19 @@ def article(request):
     # except:
     #     reponse = "<h1> Articulo no encontrado </h1>"
     # return HttpResponse(reponse)
+
+    """
+        consulta de articulos:
+
+        article = Article.object.order_by('title') --> Ordenamos por titulos.
+
+        article = Article.object.order_by('-title') --> Ordenamos por titulos pero de atras para adelante.
+
+        article = Article.object.order_by('title')[:3] --> Ordenamos por titulos pero mostramos los primeros 3.
+
+        article = Article.object.order_by('title')[3:7] --> Ordenamos por titulos pero mostramos del 3 al 7.
+    """
+    
     article = Article.objects.all()
     return render(request, 'article/article.html', {'articles': article})
 
