@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% load filters %}
 
 {% block title %} Página del sitio {% endblock %}
 
@@ -58,4 +59,8 @@
     <p>
         {{'<h1>Texto</h1> <strong>Pruebas</strong>'|striptags|wordcount}}
     </p>
+
+    {% comment 'filters' %} Llamamos al filtro greeting de la carpeta tamplatetag (filters.py) {% endcomment %}
+    {{ "Nicolas"|greeting|safe }}
+
 {% endblock %}
