@@ -6,10 +6,34 @@
 {% block content %}
     <h1 class="title">Listado de Articulos</h1>
     {% if messages %}
-        {% for message in messages %}
+        {% for m in messages %}
             <div class="message">
-                {{message}}
+                {{m}}
             </div>
+            <script>
+                swall({
+                    title: "{{title}}",
+                    text: "{{m}}",
+                    icon: "{{icon}}",
+                    button: {
+                        cancel: "Cancelar",
+                        confirm: "Aceptar",
+                    },
+                })
+                .then((willoption) => {
+                    if(willoption) {
+                        //código para ejecutar si se hace clic en el botón de aceptar
+                        swall("¡Eliminado Correctamente!",{
+                            icon: "success",
+                        });
+                    } else {
+                        //código para ejecutar si se hace clic en el botón de cancelar
+                        swall("Operación cancelada.", {
+                            icon: "info",
+                        });
+                    }
+                });
+            </script>
         {% endfor %}
     {% endif %}
     <ul>
