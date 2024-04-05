@@ -23,7 +23,10 @@
     {% endif %}
     <ul>
         {% for article in articles %}
-            <li>
+            <article class="article-item">
+                {% if article.image != 'null' and article.image.url|length >= 1 %}
+                    <img src="{{article.image.url}}" alt="Aqui va la imagen del articulo">
+                {% endif %}
                 <div class="list">
                     <h4>{{article.id}} - {{article.title}}</h4>
                     <span>{{article.create_date}}</span>
@@ -40,7 +43,7 @@
 
                 </p>
                 <hr>
-            </li>
+            </article>
         {% endfor %}
     </ul>
 {% endblock %}

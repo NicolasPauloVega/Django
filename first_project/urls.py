@@ -16,8 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('my_app.urls')),
 ]
+
+#Configurar el titulo del Panel
+title="Master Blog de Articulos"
+admin.site.site_header=title
+admin.site.site_title=title
+admin.site.index_title="Panel de Gestión"
+#Configuración para cargar imagenes
+if settings.DEBUG:  #En el settings esta como True porque estamos local,
+                    #False cuando esta en producción
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
