@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% load static %}
+{% load filters %}
+
+    {% block title %}
+        Vistas desde Page
+    {% endblock %}
+
+    {% block content %}
+        <h1 class="title">{{page.title}}</h1>
+        <span class="date">{{page.create_pg}}</span>
+        <p class="content">
+            {{page.content}}
+        </p>
+        {{pages}}
+    {% endblock %}

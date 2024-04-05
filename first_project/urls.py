@@ -21,6 +21,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('my_app.urls')),
+    path('', include('pages.urls')),
 ]
 
 #Configurar el titulo del Panel
