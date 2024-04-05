@@ -11,9 +11,32 @@
         </strong>
     {% endif %}
     
-    <form action="" method="POST">
+    <form id="articleForm" action="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Guardar">
     </form>
+
+    <script>
+        // Función para mostrar la alerta y permitir al usuario cancelar la acción
+        document.getElementById("articleForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Evitar el envío del formulario por defecto
+            
+            Swal.fire({
+                title: "¿Desea Crear este articulo?",
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: "Crear",
+                denyButtonText: "No crear"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Si el usuario confirma, enviar el formulario manualmente
+                    document.getElementById("articleForm").submit();
+                } else if (result.isDenied) {
+                    // Si el usuario no quiere guardar, mostrar un mensaje y no enviar el formulario
+                    Swal.fire("No se creo el articulo", "", "info");
+                }
+            });
+        });
+    </script>
 {% endblock %}

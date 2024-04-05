@@ -170,13 +170,13 @@ def create_full_article(request):
             article.save()
             messages.success(request, f'El articulo {article.id} se ha guardado satisfactoriamente')
             # return HttpResponse(article.title+' - '+article.content+'- '+str(article.public))
-            # return redirect('article')
-            return render(request, 'article/article.html', {
-                'title': 'Guardado el articulo con Éxito',
-                'icon': 'sucess',
-                'button': 'Aceptar',
-                'article': article
-            })
+            return redirect('article')
+            # return render(request, 'article/article.html', {
+            #     'title': 'Guardado el articulo con Éxito',
+            #     'icon': 'sucess',
+            #     'button': 'Aceptar',
+            #     'article': article
+            # })
         else:
             return render(request, 'article/create_full_article.html', {
                 'form': form

@@ -11,28 +11,13 @@
                 {{m}}
             </div>
             <script>
-                swall({
-                    title: "{{title}}",
-                    text: "{{m}}",
-                    icon: "{{icon}}",
-                    button: {
-                        cancel: "Cancelar",
-                        confirm: "Aceptar",
-                    },
-                })
-                .then((willoption) => {
-                    if(willoption) {
-                        //código para ejecutar si se hace clic en el botón de aceptar
-                        swall("¡Eliminado Correctamente!",{
-                            icon: "success",
-                        });
-                    } else {
-                        //código para ejecutar si se hace clic en el botón de cancelar
-                        swall("Operación cancelada.", {
-                            icon: "info",
-                        });
-                    }
-                });
+                Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: "Articulo creado",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
             </script>
         {% endfor %}
     {% endif %}
@@ -52,9 +37,9 @@
                 </div>
 
                 <a href="{% url 'delete_article' article.id %}">Eliminar</a>
-                <hr>
 
                 </p>
+                <hr>
             </li>
         {% endfor %}
     </ul>
