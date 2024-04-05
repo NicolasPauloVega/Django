@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %} Formulario - Crear Articulo {% endblock %}
+
+{% block content %}
+    <h1 class="title">Crear Articulo</h1>
+    {% if form.errors %}
+        <strong class="rojo">
+            hay errores en el Formulario
+        </strong>
+    {% endif %}
+    
+    <form action="{% url 'save_article' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Guardar">
+    </form>
+{% endblock %}

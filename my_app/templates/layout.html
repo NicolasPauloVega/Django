@@ -19,7 +19,7 @@
     </header>
 
     <nav>
-        <ul>
+        <ul class="menu-horizontal">
             <li>
                 <a href="{% url 'index' %}">Inicio</a>
             </li>
@@ -34,6 +34,19 @@
             </li>
             <li>
                 <a href="{% url 'article' %}">Articulos</a>
+                <ul class="menu-vertical">
+                    <li>
+                        <a href="{% url 'create_full_article' %}">Crear Articulo</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Categoria</a>
+                <ul class="menu-vertical">
+                    <li>
+                        <a href="#">Crear Categoria</a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a href="{% url 'contact' 'Nicolas' 'Paulo Vega'%}">Contacto</a>

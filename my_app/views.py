@@ -1,5 +1,8 @@
 from django.shortcuts import render, HttpResponse, redirect
 from my_app.models import Article, Category
+from django.db.models import Q
+from my_app.forms import FormArticle
+from django.contrib import messages
 
 # Create your views here.
 
@@ -86,26 +89,97 @@ def article(request):
     """
         consulta de articulos:
 
-        article = Article.object.order_by('title') --> Ordenamos por titulos.
+        article = Article.object.order_by('title') --> Filtramos un por titulo.
 
-        article = Article.object.order_by('-title') --> Ordenamos por titulos pero de atras para adelante.
+        article = Article.object.order_by('-title') --> Filtramos por un titulo pero de atras para adelante.
 
-        article = Article.object.order_by('title')[:3] --> Ordenamos por titulos pero mostramos los primeros 3.
+        article = Article.object.order_by('title')[:3] --> Filtramos por un titulo pero mostramos los primeros 3.
 
-        article = Article.object.order_by('title')[3:7] --> Ordenamos por titulos pero mostramos del 3 al 7.
+        article = Article.object.order_by('title')[3:7] --> Filtramos por un titulo pero mostramos del 3 al 7.
+
+        article = Article.object.filter(title="SENA 2024") --> Filtramos por un titulo que contenga "SENA 2024"
+
+        article = Article.object.filter(title__contains="rticulo") --> Filtramos por un título que contenga "rticulo".
+
+        article = Article.object.filter(title__exact="rticulo") --> Filtramos por un título exacto "rticulo".
+
+        article = Article.object.filter(title__iexact="rticulo") --> Filtramos por un título exacto "rticulo" de manera insensible a mayúsculas y minúsculas.
+
+        article = Article.object.filter(id__gt=9) --> Filtramo por un ID que sea mayor que 9.
+
+        article = Article.object.filter(id__gte=9) --> Filtramos por un ID que sea mayor o igual a 9.
+
+        article = Article.object.filter(id__lt=9) --> Filtramos por un ID que sea menor que 9.
+
+        article = Article.object.filter(id__lt=9, title__contains="article") --> Filtramos por un ID que sea menor que 9 y un título que contenga "article".
+
+        # article = Article.object.filter(
+        #                                 title__contrains="Arti",
+        #                                 public=True
+        #                             )
+
+        # article = Article.object.filter(
+        #                                 title_contrains="Arti",
+        #                             ).execute(
+        #                                 public=True
+        #                             )
+
+        article = Article.object.raw("select * from my_app_article where title like 'Article %' and public=0") --> Se ejecuta una consulta SQL para poder mostrar todos los registros de la tabla article.
+
+        article = Article.object.filter(Q(title__contrains="2") | Q(title__contrains="4")) --> utilizamos el metodo or para poder realizar una consulta cuyos titulos sean "2" y "4". 
     """
     
     article = Article.objects.all()
     return render(request, 'article/article.html', {'articles': article})
 
-def create_article(request,title,content,public):#Crear articulos
-    article = Article(
-        title = title,
-        content = content,
-        public = public,
-    )
-    article.save()
-    return HttpResponse(f"Articulo creado: {article.title} - {article.content} ")
+def save_article(request):#guardar articulos
+    if request.method=='POST':
+        title= request.POST['title']
+        if len(title)<=5:
+            return HttpResponse("<h2>El titulo debe ser mayor a 5 caracteres</h2>")
+        content= request.POST['content']
+        public= request.POST['public']
+        article = Article(
+            title = title,
+            content = content,
+            public = public,
+        )
+        article.save()
+        return HttpResponse(f"Articulo creado: {article.title} - {article.content} ")
+    else:
+        return HttpResponse("<h2>No se ha podido crear el articulo</h2>")
+
+
+def create_article(request):#Crear articulos
+    return render(request, 'article/create_article.html')
+
+def create_full_article(request):
+    if request.method=='POST':
+        form= FormArticle(request.POST)
+        if form.is_valid():
+            data_form = form.cleaned_data
+            title = data_form.get('title')
+            content = data_form.get('content')
+            public = data_form.get('public')
+
+            article= Article(
+                title=title,
+                content=content,
+                public=public,
+            )
+            article.save()
+            messages.success(request, f'El articulo {article.id} se ha guardado satisfactoriamente')
+            # return HttpResponse(article.title+' - '+article.content+'- '+str(article.public))
+            return redirect('article')
+        else:
+            return render(request, 'article/create_full_article.html', {
+                'form': form
+            })
+    else:
+        form = FormArticle()
+        return render(request, 'article/create_full_article.html', {
+            'form': form
+        })
 
 def update_article(requets, id):#Editar articulos
     article = Article.objects.get(pk=id)
@@ -115,3 +189,8 @@ def update_article(requets, id):#Editar articulos
 
     article.save()
     return HttpResponse(f"Articulo Editado: {article.title} - {article.content}")
+
+def delete_article(request, id):#Eliminar articulos
+    article = Article.objects.get(pk=id)
+    article.delete()
+    return redirect('article')

@@ -5,10 +5,32 @@
 
 {% block content %}
     <h1 class="title">Listado de Articulos</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
     <ul>
         {% for article in articles %}
             <li>
-                {{article.id}} - {{article.title}}
+                <div class="list">
+                    <h4>{{article.id}} - {{article.title}}</h4>
+                    <span>{{article.create_date}}</span>
+                    {% if article.public %}
+                        <strong>Publicado</strong>
+                    {% else %}
+                        <strong>Privado</strong>
+                    {% endif %}
+                    <p>
+                        {{article.content}}
+                </div>
+
+                <a href="{% url 'delete_article' article.id %}">Eliminar</a>
+                <hr>
+
+                </p>
             </li>
         {% endfor %}
     </ul>

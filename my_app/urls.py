@@ -27,5 +27,8 @@ urlpatterns = [
     path('article/', article, name="article"),
     path('create-article/', create_article, name="create_article"),
     path('create-article/<str:title>/<str:content>/<str:public>', create_article, name="create_article"),
+    path('create-full-article/', create_full_article, name="create_full_article"),
+    path('save-article/', save_article, name="save_article"),
     path('update-article/<int:id>', update_article, name="update_article"),
+    path('delete-article/<int:id>', delete_article, name="delete_article"),
 ]
